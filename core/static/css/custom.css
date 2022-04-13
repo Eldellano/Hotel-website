@@ -1,0 +1,12 @@
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+  background: #cc8b52;
+}
+.nav-link {
+  color: #cc8b52;
+}
+.nav-link:focus { /*Выделение цветом при нажатии*/
+  color: #f80137;
+}
+.nav-link:hover { /*Выделение цветом при наведении*/
+  color: #543a20;
+}
