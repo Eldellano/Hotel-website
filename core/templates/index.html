@@ -10,6 +10,7 @@
     <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}"/>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="{% static 'css/carousel.css' %}" >
     <link rel="stylesheet" type="text/css" href="{% static 'css/custom.css' %}">
 </head>
 <body>
@@ -29,5 +30,77 @@
     </header>
   </div>
 {% endblock %}
+
+{% block content %}
+  <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img class="bd-placeholder-img" width="50%" height="50%" src="{% static '/img/overlook.jpg' %}" alt="logo" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/>>
+
+        <div class="container">
+          <div class="carousel-caption text-start">
+            <h1>Посетите Оверлук</h1>
+            <p>Идеален для семейного отдыха с 1978 года</p>
+            <!--<p><a class="btn btn-lg btn-primary" href="#">Sign up today</a></p>-->
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img class="bd-placeholder-img" width="50%" height="75%" src="{% static '/img/room237.jpg' %}" alt="logo" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/>>
+
+        <div class="container">
+          <div class="carousel-caption">
+            <h1>Комфортабельные номера</h1>
+            <p>Номера для гостей имеют все необходимое для приятного отдыха</p>
+            <p><a class="btn btn-lg btn-primary" href="{% url 'rooms' %}">Подробнее</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img class="bd-placeholder-img" width="50%" height="75%" src="{% static '/img/worker.jpg' %}" alt="logo" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/>>
+
+        <div class="container">
+          <div class="carousel-caption text-end">
+            <h1>Гостеприимные сотрудники</h1>
+            <p>Наши сотрудники позаботятся о вашем комфорте</p>
+            <p><a class="btn btn-lg btn-primary" href="{% url 'about_us' %}">О нас</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+{% endblock %}
+
+
 </body>
+{% block footer %}
+<div class="container">
+  <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+    <p class="col-md-4 mb-0 text-muted">&copy; 2022 Отель Оверлук</p>
+
+    <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+      <img class="bi me-2" width="81" src="{% static '/img/footer_icon.png' %}" alt="logo">
+    </a>
+
+    <ul class="nav col-md-4 justify-content-end">
+      <li class="nav-item"><a href="{% url 'rooms' %}" class="nav-link px-2 text-muted">Номера</a></li>
+      <li class="nav-item"><a href="{% url 'reservation' %}" class="nav-link px-2 text-muted">Бронирование</a></li>
+      <li class="nav-item"><a href="{% url 'about_us' %}" class="nav-link px-2 text-muted">О нас</a></li>
+    </ul>
+  </footer>
+</div>
+{% endblock %}
 </html>

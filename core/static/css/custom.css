@@ -10,3 +10,11 @@
 .nav-link:hover { /*Выделение цветом при наведении*/
   color: #543a20;
 }
+.btn{
+  background: #cc8b52;
+  border: #cc8b52;
+}
+.carousel-caption{
+  color: #cc8b52;
+  text-shadow: 1px 1px 1px #4b351b;
+}
