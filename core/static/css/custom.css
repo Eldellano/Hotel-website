@@ -18,3 +18,9 @@
   color: #cc8b52;
   text-shadow: 1px 1px 1px #4b351b;
 }
+body {
+  margin-top: -40px;
+}
+.btn-primary:hover{
+    background-color: #714b28;
+}

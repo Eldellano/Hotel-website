@@ -5,15 +5,16 @@
 {% bootstrap_css %}
 {% bootstrap_javascript %}
 <html lang="en">
+
 {% block head %}
 <head>
+    <title>Главная</title>
     <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}"/>
     <meta charset="UTF-8">
-    <title>Title</title>
     <link rel="stylesheet" href="{% static 'css/carousel.css' %}" >
     <link rel="stylesheet" type="text/css" href="{% static 'css/custom.css' %}">
-</head>
-<body>
+
+
   <div class="container">
     <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
       <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
@@ -29,9 +30,11 @@
       </ul>
     </header>
   </div>
+</head>
 {% endblock %}
 
 {% block content %}
+  <body>
   <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-indicators">
       <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -82,10 +85,11 @@
       <span class="visually-hidden">Next</span>
     </button>
   </div>
+  </body>
 {% endblock %}
 
 
-</body>
+
 {% block footer %}
 <div class="container">
   <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">

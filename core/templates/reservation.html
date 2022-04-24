@@ -1,12 +1,48 @@
 <!DOCTYPE html>
 {% extends 'index.html' %}
+{% load static %}
 <html lang="en">
-<head>
-    { % block head %}
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
 
+
+{% block content %}
+  <title>Бронирование</title>
+  <body>
+  <div class="container">
+    <div class="row g-2">
+        <div class="col-8">
+        <img class="bi me-2" width="85%" src="{% static '/img/main_reservation.webp' %}" alt="logo">
+
+      </div>
+      <div class="col-4">
+            <div class="form-floating mb-1">
+        <input type="name" class="form-control" id="floatingInputGrid" placeholder="name@example.com" value="">
+        <label for="floatingInputGrid">Введите ваше имя</label>
+      </div>
+        <div class="form-floating mb-1">
+          <select class="form-select" id="floatingSelectGrid" aria-label="Floating label select example">
+            <option selected>---</option>
+            <option value="1">Одноместный</option>
+            <option value="2">Двухместный</option>
+            <option value="3">Трехместный</option>
+          </select>
+          <label for="floatingSelectGrid">Выберите номер для бронирования</label>
+        </div>
+      <div class="form-floating mb-1">
+        <input type="date" class="form-control" class="mydate" name="date" placeholder="Дата">
+        <label for="floatingInputGrid">Желаемая дата заезда</label>
+      </div>
+      <div class="form-floating mb-1">
+        <input type="date" class="form-control" class="mydate" name="date" placeholder="Дата">
+        <label for="floatingInputGrid">Желаемая дата выезда</label>
+      </div>
+      <div class="form-floating mt-4 text-center">
+        <button type="button" class="btn btn-primary btn-lg ">Оставить заявку</button>
+      </div>
+      </div>
+    </div>
+
+</div>
 </body>
+{% endblock %}
+
 </html>
