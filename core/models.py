@@ -11,6 +11,18 @@ class TimestampedModel(models.Model):
         abstract = True
 
 
+class Images(models.Model):
+    alt = models.CharField(max_length=64, blank=True, verbose_name='Описание')
+    src = models.ImageField(upload_to='core/static/img/rooms', verbose_name='Выбрать файл')
+    room = models.ForeignKey('Room', null=True, blank=True, verbose_name='Номер', on_delete=models.CASCADE)
+    default_img = models.BooleanField(default=False, verbose_name='Главная фотография')
+
+    class Meta:
+        verbose_name_plural = 'Фотографии'
+
+    def __str__(self):
+        return self.alt
+
 class Room(models.Model):
     """Описание гостиничных номеров"""
     type = models.CharField(max_length=150, null=False, default='Номер', verbose_name='Тип номера')
