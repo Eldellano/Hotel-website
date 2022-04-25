@@ -46,9 +46,33 @@
                         <label for="floatingInputGrid">Желаемая дата выезда</label>
                     </div>
                     <div class="mb-3 form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1" name="data_processing">
                         <label class="form-check-label" for="exampleCheck1">Разрешаю обработку своих данных</label>
                     </div>
+
+                    <div class="form-floating mt-4alert alert-success" role="alert">
+                        {% if messages %}
+                            <ul class="messages">
+                                {% for message in messages %}
+                                    {% if message.tags == 'success' %}
+                                        {{ message }}
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </div>
+                    <div class="form-floating mt-4alert alert-danger" role="alert">
+                        {% if messages %}
+                            <ul class="messages">
+                                {% for message in messages %}
+                                    {% if message.tags == 'error' %}
+                                        {{ message }}
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </div>
+
                     <div class="form-floating mt-4 text-center">
                         <button type="submit" class="btn btn-primary btn-lg ">Оставить заявку</button>
                     </div>
@@ -58,6 +82,8 @@
 
         </div>
     </form>
+
+
     </body>
 {% endblock %}
 
