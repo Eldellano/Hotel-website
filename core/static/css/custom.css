@@ -24,3 +24,10 @@ body {
 .btn-primary:hover{
     background-color: #714b28;
 }
+.btn-primary:focus{
+    background-color: #807c10;
+}
+.form-check-input:checked {
+    background-color: #cc8b52;
+    border: #cc8b52;
+}

@@ -5,44 +5,60 @@
 
 
 {% block content %}
-  <title>Бронирование</title>
-  <body>
-  <div class="container">
-    <div class="row g-2">
-        <div class="col-8">
-        <img class="bi me-2" width="85%" src="{% static '/img/main_reservation.webp' %}" alt="logo">
+    <title>Бронирование</title>
+    <body>
+    <form method="post">
+        {% csrf_token %}
+        <div class="container">
+            <div class="row g-2">
+                <div class="col-8">
+                    <img class="bi me-2" width="85%" src="{% static '/img/main_reservation.webp' %}" alt="logo">
 
-      </div>
-      <div class="col-4">
-            <div class="form-floating mb-1">
-        <input type="name" class="form-control" id="floatingInputGrid" placeholder="name@example.com" value="">
-        <label for="floatingInputGrid">Введите ваше имя</label>
-      </div>
-        <div class="form-floating mb-1">
-          <select class="form-select" id="floatingSelectGrid" aria-label="Floating label select example">
-            <option selected>---</option>
-            <option value="1">Одноместный</option>
-            <option value="2">Двухместный</option>
-            <option value="3">Трехместный</option>
-          </select>
-          <label for="floatingSelectGrid">Выберите номер для бронирования</label>
+                </div>
+
+                <div class="col-4">
+                    <div class="form-floating mb-1">
+                        <input type="name" class="form-control" id="floatingInputGrid" placeholder="name@example.com"
+                               value="" name="client_name">
+                        <label for="floatingInputGrid">Введите ваше имя</label>
+                    </div>
+                    <div class="form-floating mb-1">
+                        <input type="phone" class="form-control" id="floatingInputGrid" placeholder="name@example.com"
+                               value="" name="client_phone">
+                        <label for="floatingInputGrid">Ваш номер телефона для связи</label>
+                    </div>
+                    <div class="form-floating mb-1">
+                        <select class="form-select" id="floatingSelectGrid" aria-label="Floating label select example"
+                                name="select_room">
+                            <option selected>---</option>
+                            {% for i in room %}
+                                <option value="{{ i.type }}">{{ i.type }}</option>
+                            {% endfor %}
+                        </select>
+                        <label for="floatingSelectGrid">Выберите номер для бронирования</label>
+                    </div>
+                    <div class="form-floating mb-1">
+                        <input type="date" class="form-control" class="mydate" name="date_in" placeholder="Дата">
+                        <label for="floatingInputGrid">Желаемая дата заезда</label>
+                    </div>
+                    <div class="form-floating mb-1">
+                        <input type="date" class="form-control" class="mydate" name="date_out" placeholder="Дата">
+                        <label for="floatingInputGrid">Желаемая дата выезда</label>
+                    </div>
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                        <label class="form-check-label" for="exampleCheck1">Разрешаю обработку своих данных</label>
+                    </div>
+                    <div class="form-floating mt-4 text-center">
+                        <button type="submit" class="btn btn-primary btn-lg ">Оставить заявку</button>
+                    </div>
+                </div>
+
+            </div>
+
         </div>
-      <div class="form-floating mb-1">
-        <input type="date" class="form-control" class="mydate" name="date" placeholder="Дата">
-        <label for="floatingInputGrid">Желаемая дата заезда</label>
-      </div>
-      <div class="form-floating mb-1">
-        <input type="date" class="form-control" class="mydate" name="date" placeholder="Дата">
-        <label for="floatingInputGrid">Желаемая дата выезда</label>
-      </div>
-      <div class="form-floating mt-4 text-center">
-        <button type="button" class="btn btn-primary btn-lg ">Оставить заявку</button>
-      </div>
-      </div>
-    </div>
-
-</div>
-</body>
+    </form>
+    </body>
 {% endblock %}
 
 </html>
