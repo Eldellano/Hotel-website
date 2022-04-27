@@ -4,6 +4,7 @@ from .models import Room, RoomReservation, Client
 from django.contrib import messages
 from django.core.exceptions import ValidationError
 from django.utils.datastructures import MultiValueDictKeyError
+from .name_upper import name_upper
 # Create your views here.
 
 
@@ -42,6 +43,8 @@ def reserv(request):
 
             if client_name == '' or client_phone == '':
                 raise ValidationError('Не указано имя или номер телефона')
+
+            client_name = name_upper(client_name)
 
             client = Client.objects.create(name=client_name, phone_number=client_phone)
             RoomReservation.objects.create(rooms=room.get(type=select_room), client=client,
