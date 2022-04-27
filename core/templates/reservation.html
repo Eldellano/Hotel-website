@@ -15,7 +15,8 @@
         <div class="container">
             <div class="row g-2">
                 <div class="col-8">
-                    <img name='img' class="bi me-2" width="85%" src="{% static '/img/main_reservation.webp' %}" alt="room">
+                    <img name='img' class="bi me-2" width="85%" src="{% static '/img/main_reservation.webp' %}"
+                         alt="room">
 
                 </div>
 
@@ -31,9 +32,10 @@
                         <label for="floatingInputGrid">Ваш номер телефона для связи</label>
                     </div>
                     <div class="form-floating mb-1">
-                        <select class="form-select" onchange="getValue(this.value);" id="floatingSelectGrid" aria-label="Floating label select example"
+                        <select class="form-select" onchange="getValue(this.value);" id="floatingSelectGrid"
+                                aria-label="Floating label select example"
                                 name="select_room">
-                            <option selected name="start">---</option>
+                            <option selected="selected">---</option>
                             {% for i in room %}
                                 <option value="{{ i.type }}">{{ i.type }}</option>
                             {% endfor %}
