@@ -11,6 +11,7 @@
         {% csrf_token %}
 
         <script src="{% static 'js/for_image_reserv.js' %}"></script>
+        <script src="{% static 'js/for_phone_input.js' %}"></script>
 
         <div class="container">
             <div class="row g-2">
@@ -27,8 +28,8 @@
                         <label for="floatingInputGrid">Введите ваше имя</label>
                     </div>
                     <div class="form-floating mb-1">
-                        <input type="phone" class="form-control" id="floatingInputGrid" placeholder="name@example.com"
-                               value="" name="client_phone">
+                        <input type="tel" data-tel-input class="form-control" id="floatingInputGrid"
+                               placeholder="Phone" maxlength="18" value="" name="client_phone">
                         <label for="floatingInputGrid">Ваш номер телефона для связи</label>
                     </div>
                     <div class="form-floating mb-1">

@@ -39,12 +39,13 @@ def reserv(request):
             select_room = request.POST['select_room']
             date_in = request.POST['date_in']
             date_out = request.POST['date_out']
-            data_processing = request.POST['data_processing']
+            data_processing = request.POST['data_processing']  # checkbox в случае отсутствия --> MultiValueDictKeyError
 
             if client_name == '' or client_phone == '':
                 raise ValidationError('Не указано имя или номер телефона')
 
             client_name = name_upper(client_name)
+            client_phone = client_phone.replace(' ', '')
 
             client = Client.objects.create(name=client_name, phone_number=client_phone)
             RoomReservation.objects.create(rooms=room.get(type=select_room), client=client,
