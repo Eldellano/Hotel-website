@@ -5,6 +5,7 @@ from django.contrib import messages
 from django.core.exceptions import ValidationError
 from django.utils.datastructures import MultiValueDictKeyError
 from .name_upper import name_upper
+from .tegram_bot import send_message
 # Create your views here.
 
 
@@ -23,11 +24,8 @@ class Rooms(TemplateView):
     template_name = 'rooms.html'
 
 
-# class Reserv(TemplateView):
-#     template_name = 'reservation.html'
-
-
 def reserv(request):
+    """View для бронирования"""
     room = Room.objects.all()
     # print(room[0].type)
     if request.method == 'GET':
@@ -40,6 +38,7 @@ def reserv(request):
             date_in = request.POST['date_in']
             date_out = request.POST['date_out']
             data_processing = request.POST['data_processing']  # checkbox в случае отсутствия --> MultiValueDictKeyError
+            #TODO: форматирование даты, сравнение с текущей датой!
 
             if client_name == '' or client_phone == '':
                 raise ValidationError('Не указано имя или номер телефона')
@@ -53,6 +52,11 @@ def reserv(request):
 
             success_message = f'{client_name}, Ваша заявка зарегистрирована, мы позвоним Вам в ближайшее время :)'
             messages.success(request, success_message)
+
+            # отправка уведомления о бронировании в телеграм
+            notification_for_telegram = f'Заявка на бронирование! {client_name}, {client_phone}, ' \
+                                        f'{select_room}, c {date_in} по {date_out}'
+            send_message(notification_for_telegram)
 
         except MultiValueDictKeyError:  # check data_processing
             error_message = f'Без разрешения на обработку данных мы не можем создать заявку :('
