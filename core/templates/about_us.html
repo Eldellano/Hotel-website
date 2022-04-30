@@ -1,13 +1,109 @@
 <!DOCTYPE html>
 {% extends 'index.html' %}
+{% load static %}
 <html lang="en">
 <head>
     { % block head %}
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-<body>
 {% block content %}
+    <script src="{% static 'js/for_phone_input.js' %}"></script>
+    <body>
+
+    <section class="text-center container">
+        <div class="row py-lg-4">
+            <div class="col-lg-8 col-md-8 mx-auto">
+                <h1 class="fw-light">Добро пожаловать в отель Оверлук</h1>
+                <p class="lead text-muted py-lg-3">Наш отель прекрасный вариант для размещения с видом на горы.
+                    Гостям предоставляется бесплатный Интернет. Номера в отеле Оверлук оборудованы
+                    ТВ с плоским экраном и индивидуальным санузлом.
+                </p>
+                <p class="lead text-muted ">Мы находимся по адресу:
+                    Колорадо, Эстес-Парк, 333 Вондервью Авеню.
+                </p>
+                <p class="lead text-muted">Если у вас остались вопросы, то позвоните нам по номеру <b>+78005553535</b>,
+                    или запросите обратную связь воспользовавшись формой ниже, мы обязательно вам позвоним!
+                </p>
+            </div>
+        </div>
+
+        <form method="post">
+            {% csrf_token %}
+            <div class="container mx-auto mb-4">
+                <div class="row g-1">
+                    <div class="col-sm-2">
+                    </div>
+                    <div class="col-sm-8">
+
+                        <div class="row g-1">
+                            <div class="form-floating col-sm-4 gx-2">
+                                <input type="name" class="form-control" id="floatingInputGrid"
+                                       placeholder="name@example.com"
+                                       value="" name="client_name">
+                                <label for="floatingInputGrid">Введите ваше имя</label>
+                            </div>
+                            <div class="form-floating mb-1 col-sm-4 gx-2">
+                                <input type="tel" data-tel-input class="form-control" id="floatingInputGrid"
+                                       placeholder="Phone" maxlength="18" value="" name="client_phone">
+                                <label for="floatingInputGrid">Ваш номер телефона</label>
+                            </div>
+                            <div class="form-floating mt-2 col-sm-4">
+                                <style>
+                                    .btn {
+                                        margin-top: 2px;
+                                        margin-left: -50px;
+                                    }
+                                </style>
+                                <button type="submit" class="btn btn-primary btn-lg">Оставить заявку</button>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-sm-2">
+                    </div>
+
+                    <div class="row g-0">
+                        <div class="col-sm-2">
+                        </div>
+                        <div class="col-sm-8">
+                            <div class="form-floating mt-4alert alert-success" role="alert">
+                                {% if messages %}
+                                    {% for message in messages %}
+                                        {% if message.tags == 'success' %}
+                                            {{ message }}
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endif %}
+                            </div>
+                            <div class="form-floating mt-4alert alert-danger" role="alert">
+                                {% if messages %}
+                                    {% for message in messages %}
+                                        {% if message.tags == 'error' %}
+                                            {{ message }}
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endif %}
+                            </div>
+
+                        </div>
+                        <div class="col-sm-2">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </section>
+
+
+    <!-- https://yandex.ru/map-constructor -->
+    <script
+            type="text/javascript" charset="utf-8" async
+            src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A1d42a0a2f0c3a73a07779e8466c3f410858b0ea6f2590d4820842130e6c4dc0e&amp;width=100%25&amp;height=371&amp;lang=ru_RU&amp;scroll=true">
+    </script>
+
+    </body>
 {% endblock %}
-</body>
+
 </html>
