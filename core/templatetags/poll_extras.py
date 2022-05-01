@@ -8,5 +8,5 @@ register = template.Library()
 @register.filter(name='cut')
 @stringfilter
 def cut(value):
-    """Removes all values of arg from the given string"""
+    """Для обрезки 'core' у src картинки"""
     return value[4:]
