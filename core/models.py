@@ -29,6 +29,7 @@ class Room(models.Model):
     bed = models.PositiveIntegerField(null=False, verbose_name='Количество кроватей')
     floor = models.PositiveIntegerField(null=False, verbose_name='Этаж')
     cost_per_day = models.PositiveIntegerField(null=True, verbose_name='Стоимость за сутки')
+    short_description = models.CharField(max_length=100, null=True, verbose_name='Короткое описание')
     description = models.CharField(max_length=300, null=True, verbose_name='Описание')
     # file will be uploaded to MEDIA_ROOT/uploads  #TODO: Почитать, настроить!
     # https://www.djbook.ru/rel1.9/ref/models/fields.html#filefield
