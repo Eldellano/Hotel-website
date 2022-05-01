@@ -10,6 +10,10 @@
 .nav-link:hover { /*Выделение цветом при наведении*/
   color: #543a20;
 }
+.nav-link.active:hover{ /*кнопка 'главная страница'*/
+    color: #fdfdfd;
+    background-color: #714b28;
+}
 .btn{
   background: #cc8b52;
   border: #cc8b52;
@@ -24,10 +28,23 @@ body {
 .btn-primary:hover{
     background-color: #714b28;
 }
-.btn-primary:focus{
+.btn-primary:focus { /*цвет при нажатии кнопки*/
     background-color: #807c10;
 }
 .form-check-input:checked {
     background-color: #cc8b52;
     border: #cc8b52;
+}
+.btn-outline-secondary { /*Кнопки на странице с номерами*/
+    color: #ffffff;
+    border-color: #6c757d;
+}
+.btn-outline-secondary:hover { /*Выделение цветом при нажатии*/
+    background-color: #543a20;
+    outline:none !important;
+}
+.btn:focus {
+outline: none; /*Отключает обводку кнопок при нажатии */
+box-shadow: none; /*Отключает обводку кнопок при нажатии */
+background-color: #807c10; /*цвет при нажатии кнопки*/
 }

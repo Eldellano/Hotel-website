@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic.base import TemplateView
-from .models import Room, RoomReservation, Client
+from .models import Room, RoomReservation, Client, Images
 from django.contrib import messages
 from django.core.exceptions import ValidationError
 from django.utils.datastructures import MultiValueDictKeyError
@@ -15,9 +15,22 @@ class IndexView(TemplateView):
     template_name = 'index.html'
 
 
-class Rooms(TemplateView):
+def rooms(request):
+    """View c описание доступных номеров"""
+    room = Room.objects.all()
+    images = Images.objects.filter(default_img=True)
 
-    template_name = 'rooms.html'
+    if request.method == 'GET':
+        return render(request, 'rooms.html', {'room': room, 'images': images})
+
+
+def room_details(request, pk):
+    """View c описание доступных номеров"""
+    room = Room.objects.get(pk=pk)
+    images = Images.objects.filter(room_id=pk)
+
+    if request.method == 'GET':
+        return render(request, 'room_details.html', {'room': room, 'images': images})
 
 
 def reserv(request):
