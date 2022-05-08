@@ -36,9 +36,11 @@ def room_details(request, pk):
 def reserv(request):
     """View для бронирования"""
     room = Room.objects.all()
+    images = Images.objects.filter(default_img=True)
+
     # print(room[0].type)
     if request.method == 'GET':
-        return render(request, 'reservation.html', {'room': room})
+        return render(request, 'reservation.html', {'room': room, 'images': images})
     if request.method == 'POST':
         try:
             client_name = request.POST['client_name']
@@ -53,9 +55,10 @@ def reserv(request):
 
             client_name = name_upper(client_name)
             client_phone = client_phone.replace(' ', '')
+            select_room = images.get(src=f'core{select_room}')
 
             client = Client.objects.create(name=client_name, phone_number=client_phone)
-            RoomReservation.objects.create(rooms=room.get(type=select_room), client=client,
+            RoomReservation.objects.create(rooms=room.get(id=select_room.room_id), client=client,
                                            date_in=date_in, date_out=date_out)
 
             success_message = f'{client_name}, Ваша заявка зарегистрирована, мы позвоним Вам в ближайшее время :)'
@@ -63,7 +66,7 @@ def reserv(request):
 
             # отправка уведомления о бронировании в телеграм
             notification_for_telegram = f'Заявка на бронирование! {client_name}, {client_phone}, ' \
-                                        f'{select_room}, c {date_in} по {date_out}'
+                                        f'{select_room.room.type}, c {date_in} по {date_out}'
             send_message(notification_for_telegram)
 
         except MultiValueDictKeyError:  # check data_processing
@@ -73,7 +76,7 @@ def reserv(request):
             error_message = f'Произошла ошибка! Кажется вы заполнили не все поля!'
             messages.error(request, error_message)
 
-        return render(request, 'reservation.html', {'room': room})
+        return render(request, 'reservation.html', {'room': room, 'images': images})
 
 
 class Extra(TemplateView):

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 {% extends 'index.html' %}
 {% load static %}
+{% load poll_extras %}
 <html lang="en">
 
 
@@ -38,7 +39,11 @@
                                 name="select_room">
                             <option selected="selected">---</option>
                             {% for i in room %}
-                                <option value="{{ i.type }}">{{ i.type }}</option>
+                                {% for j in images %}
+                                    {% if j.room_id == i.pk %}
+                                        <option value="{{ j.src|cut }}">{{ i.type }}</option>
+                                    {% endif %}
+                                {% endfor %}
                             {% endfor %}
                         </select>
                         <label for="floatingSelectGrid">Выберите номер для бронирования</label>
