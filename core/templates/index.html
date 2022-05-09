@@ -25,7 +25,7 @@
         <li class="nav-item"><a href="/" class="nav-link active" aria-current="page">Главная страница</a></li>
         <li class="nav-item"><a href="{% url 'rooms' %}" class="nav-link">Номера</a></li>
         <li class="nav-item"><a href="{% url 'reservation' %}" class="nav-link">Бронирование</a></li>
-        <li class="nav-item"><a href="{% url 'extra' %}" class="nav-link">Дополнительные услуги</a></li>
+        <!--<li class="nav-item"><a href="{% url 'extra' %}" class="nav-link">Дополнительные услуги</a></li>></-->
         <li class="nav-item"><a href="{% url 'about_us' %}" class="nav-link">О нас</a></li>
       </ul>
     </header>
@@ -93,7 +93,11 @@
 {% block footer %}
 <div class="container">
   <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-    <p class="col-md-4 mb-0 text-muted">&copy; 2022 Отель Оверлук</p>
+    <div class="col-md-4 mb-0 text-muted">
+        <div class="col-mb-2">8-800-555-35-35</div>
+        <div class="col-mb-2">Колорадо, Эстес-Парк, 333 Вондервью Авеню.</div>
+        <div class="col">&copy; 2022 Отель Оверлук</div>
+    </div>
 
     <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
       <img class="bi me-2" width="81" src="{% static '/img/footer_icon.png' %}" alt="logo">
