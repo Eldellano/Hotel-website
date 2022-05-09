@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% load static %}
+{% load poll_extras %}
+<html lang="en">
+<head>
+    { % block head %}
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% block content %}
+    <script type="text/javascript" src="{% static '/fancybox/jquery-1.4.3.min.js' %}"></script>
+    <script type="text/javascript" src="{% static '/fancybox/jquery.mousewheel-3.0.4.pack.js' %}"></script>
+    <script type="text/javascript" src="{% static '/fancybox/jquery.fancybox-1.3.4.pack.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static '/fancybox/jquery.fancybox-1.3.4.css' %}" media="screen"/>
+    <script src="{% static 'js/for_image_preview.js' %}"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("a[rel=example_group]").fancybox({
+                'transitionIn': 'none',
+                'transitionOut': 'none',
+                'titlePosition': 'over',
+                'titleFormat': function (title, currentArray, currentIndex, currentOpts) {
+                }
+            });
+        });
+    </script>
+
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-7"><!--Карусель></-->
+
+                <div id="myCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval='false'
+                data-bs-wrap="true">
+
+                    <div class="carousel-indicators">
+                        {% for i in images|length|range %}
+                            {% if i == 0 %}
+                                <button type="button" data-bs-target="#myCarousel"
+                                        data-bs-slide-to={{ i }} class="active"
+                                        aria-current="true"></button>
+                            {% else %}
+                                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to={{ i }}></button>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+
+                    <div class="carousel-inner">
+                        {% for i in images %}
+                            {% if i.default_img == True %}
+                                <div class="carousel-item active">
+                                    <a name='a_active' rel="example_group" href='{{ i.src|cut }}'>
+                                        <img name='img_active' class="bd-placeholder-img" width="100%" height="100%"
+                                             src='{{ i.src|cut }}' alt="images" aria-hidden="true">
+                                    </a>
+                                </div>
+                            {% else %}
+                                <div class="carousel-item">
+                                    <a name='a_item' rel="example_group" href='{{ i.src|cut }}'>
+                                        <img name='img' class="bd-placeholder-img" width="100%" height="100%"
+                                             src='{{ i.src|cut }}' alt="images" aria-hidden="true">
+                                    </a>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+
+                        <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel"
+                                data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#myCarousel"
+                                data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+
+
+                    </div>
+
+                </div>
+                <div class="container">
+                    {% for i in images %}
+                        <img onclick="getValue(this.src);" class="bd-placeholder-img" width="25%" height="25%"
+                             src='{{ i.src|cut }}' alt="image" aria-hidden="true">
+                    {% endfor %}
+                </div>
+
+
+            </div>
+            <div class="col-sm-5"><!--Описание></-->
+                <h2>{{ room.type }}</h2>
+                <p>{{ room.description }}</p>
+                <p>Стоимость {{ room.cost_per_day }} рублей в сутки. </p>
+                <p>Просим обратить внимание - расчетный час в 13:00</p>
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+{% endblock %}
+</body>
+</html>
