@@ -1,7 +1,7 @@
 from django.db import models
-
-
+from django.utils.safestring import mark_safe
 # Create your models here.
+
 
 class TimestampedModel(models.Model):
     created = models.DateTimeField(auto_now_add=True)
@@ -22,6 +22,11 @@ class Images(models.Model):
 
     def __str__(self):
         return self.alt
+
+    def preview(self):
+        return mark_safe(f'<img src="{self.src.name[4:]}" style="max-height: 200px;">')
+    preview.short_description = 'Предпросмотр'
+
 
 class Room(models.Model):
     """Описание гостиничных номеров"""
