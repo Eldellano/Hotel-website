@@ -1,3 +1,3 @@
 .sqlite3
-/Website/key/secret_key.txt
-/Website/key/telegram_token.txt
+/website/key/secret_key.txt
+/website/key/telegram_token.txt
